@@ -1,0 +1,25 @@
+pkgname=sjasmplus
+pkgver=20170908
+pkgrel=1
+pkgdesc="Z80 cross-assembler"
+arch=('x86_64' 'i686')
+url="https://github.com/mkoloberdin/sjasmplus"
+license=('SKIP')
+makedepends=('boost')
+options=()
+source=(https://github.com/mkoloberdin/$pkgname/archive/$pkgver.tar.gz)
+md5sums=('SKIP')
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	mkdir build
+	cd build
+	cmake ..
+	make
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver/build"
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
+}
