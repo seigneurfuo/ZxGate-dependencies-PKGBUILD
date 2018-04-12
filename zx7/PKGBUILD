@@ -1,0 +1,23 @@
+pkgname=zx7
+_reponame=z88dk
+pkgver=0.00
+pkgrel=3
+pkgdesc="Fast compressor/decompressor for Z80 based on ZX7 by Einar Saukas"
+arch=('x86_64' 'i686')
+url="https://github.com/z88dk/z88dk"
+license=('SKIP')
+makedepends=('git')
+options=()
+source=(git+https://github.com/z88dk/z88dk.git)
+md5sums=('SKIP')
+
+build() {
+	cd "$srcdir"/"$_reponame"/"src"/"$pkgname"
+	make
+}
+
+package() {
+	cd "$srcdir"/"$_reponame"/"src"/"$pkgname"
+	mkdir -p "$pkgdir"/usr/bin
+	install -Dm755 "$pkgname" "$pkgdir"/usr/bin
+}
