@@ -1,0 +1,18 @@
+pkgname=fuse-emulator-trdos-rom
+_reponame=zemu
+_romfile=trdos.rom
+pkgver=20091031
+pkgrel=3
+pkgdesc="A rom for using Beta Disc interface in Fuse emulator"
+arch=('x86_64' 'i686')
+url="https://github.com/mkoloberdin/zemu/blob/master/src/roms/trdos.rom"
+makedepends=('git')
+depends=('fuse-emulator')
+source=(git+https://github.com/mkoloberdin/zemu/)
+md5sums=('SKIP')
+
+package() {
+	cd "$srcdir/$_reponame/src/roms"
+	mkdir -p "$pkgdir"/usr/share/fuse/
+	install -Dm644 "$_romfile" "$pkgdir"/usr/share/fuse/
+}
