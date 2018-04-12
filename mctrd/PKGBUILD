@@ -1,0 +1,22 @@
+pkgname=mctrd
+pkgver=20150804
+pkgrel=1
+pkgdesc="Command line tool for add/extract files from .scl and .trd images"
+arch=('x86_64' 'i686')
+url="https://github.com/samstyle/mctrd"
+license=('SKIP')
+makedepends=('git')
+options=()
+source=(git+https://github.com/samstyle/mctrd.git)
+md5sums=('SKIP')
+
+build() {
+	cd "$srcdir"/"$pkgname"
+	make
+}
+
+package() {
+	cd "$srcdir"/"$pkgname"
+	mkdir -p "$pkgdir"/usr/bin
+	install -Dm755 "$pkgname" "$pkgdir"/usr/bin
+}
